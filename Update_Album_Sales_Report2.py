@@ -116,4 +116,4 @@ print()
 # Update sheet title
 xl_sheet.title = statement_period + ' (Streaming + Downloads)'
 
-# xl_wb.save(xl_file)
+xl_wb.save(xl_file)

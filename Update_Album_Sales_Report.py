@@ -114,4 +114,4 @@ print()
 # Update sheet title
 xl_sheet.title = statement_period
 
-# xl_wb.save(xl_file)
+xl_wb.save(xl_file)
