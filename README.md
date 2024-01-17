@@ -38,7 +38,9 @@ Extra Thoughts
 --------------
 - I did not use Excel's pivot table for the first script because I wanted the release titles to be in chronological order of their release dates, and for some reason this data isn't available in the CSV file. This is also the reason I've decided to hard code the ordering of the release titles.
 
-- And.. This is my very first repo! Yes, I had only starting learning Git a week ago! 😃
+- I also considered writing directly onto the separate master Excel spreadsheet since that would eliminate all the copy-pasting which is the most time-consuming part of the process. But I've decided this extra efficiency isn't worth the trade-off of risking having my code mess up something.
+
+- And.. this is my very first repo! Yes, I had only starting learning Git (and Markdown!) a week ago! 😃
 
 #### Notable libraries I used / learned for this project:
 - pandas
