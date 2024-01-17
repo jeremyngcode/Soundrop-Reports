@@ -42,6 +42,6 @@ Extra Thoughts
 
 - And.. this is my very first repo! Yes, I had only starting learning Git (and Markdown!) a week ago! 😃
 
-#### Notable libraries I used / learned for this project:
+#### Notable libraries used / learned for this project:
 - [pandas](https://pypi.org/project/pandas/)
 - [openpyxl](https://pypi.org/project/openpyxl/)
