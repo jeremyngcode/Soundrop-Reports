@@ -15,6 +15,8 @@ summed_revenues = soundrop_df.groupby('Release Title')['Amount Due in USD'].sum(
 summed_revenues = summed_revenues.apply(lambda x: round(x, 2))
 
 # Display summed revenues and check if the total number of releases recorded is correct
+full_catalog = albums_list | singles_list | albums_list_collabs | singles_list_collabs
+
 print(summed_revenues)
 print(f'TOTAL NUMBER OF RELEASES: {len(summed_revenues)}/{len(full_catalog)}\n')
 print(f'TOTAL REVENUE: ${summed_revenues.sum()}')
@@ -26,8 +28,6 @@ print(f'AFTER-TAX INCOME: ${after_tax_income}')
 print()
 
 # Check for release titles that do not exist in full_catalog.values()
-full_catalog = albums_list | singles_list | albums_list_collabs | singles_list_collabs
-
 not_found_in_catalog = [
 	release_title for release_title in summed_revenues.index
 	if release_title not in full_catalog.values()
