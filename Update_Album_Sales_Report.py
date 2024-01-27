@@ -56,10 +56,10 @@ print('Writing summed revenues..')
 columns = (('A', 'B'), ('D', 'E'), ('G', 'H'), ('J', 'K'))
 categories = (albums_list,  singles_list, albums_list_collabs, singles_list_collabs)
 
-for (column, category) in zip(columns, categories):
+for (col_pair, category) in zip(columns, categories):
 	for (row, release_title) in enumerate(category.values(), 2):
-		xl_sheet[f'{column[0]}{row}'] = release_title
-		xl_sheet[f'{column[1]}{row}'] = summed_revenues.get(release_title, '[INVALID KEY]')
+		xl_sheet[f'{col_pair[0]}{row}'] = release_title
+		xl_sheet[f'{col_pair[1]}{row}'] = summed_revenues.get(release_title, '[INVALID KEY]')
 print()
 
 # Update sheet title
