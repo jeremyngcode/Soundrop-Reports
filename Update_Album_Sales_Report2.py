@@ -26,6 +26,10 @@ amazon_services = ('Amazon Ads', 'Amazon Music Unlimited', 'Amazon Prime')
 soundrop_df_grouped_Sub.loc['Amazon'] = sum(
 	map(lambda service: soundrop_df_grouped_Sub.loc[service], amazon_services)
 )
+youtube_services = ('YouTube', 'YouTube Red')
+soundrop_df_grouped_Sub.loc['YouTube Sub'] = sum(
+	map(lambda service: soundrop_df_grouped_Sub.loc[service], youtube_services)
+)
 
 # Group for downloads data
 soundrop_df_grouped2 = soundrop_df.groupby(
@@ -55,7 +59,7 @@ services_Sub = (
 	'Apple Music',
 	'Spotify',
 	'Amazon',
-	'YouTube Red',
+	'YouTube Sub',
 	'Deezer'
 )
 
@@ -82,10 +86,9 @@ print('Writing Ad-Supported Streaming data..')
 
 services_AdS = (
 	'Spotify',
-	'YouTube'
 )
 
-rows = (40, 45)
+rows = (40,)
 for (row, service) in zip(rows, services_AdS):
 	xl_sheet[f'{col}{row}'] = soundrop_df_grouped_AdS.loc[service, 'Quantity']
 
@@ -97,7 +100,7 @@ for (row, service) in zip(rows, services_AdS):
 # Write formula values for streaming data
 print('Writing formula values for streaming data..')
 
-rows = (11, 16, 21, 26, 31, 6, 42, 47)
+rows = (11, 16, 21, 26, 31, 6, 42)
 for row in rows:
 	xl_sheet[f'{col}{row}'] = f'=({col}{row-1}/{col}{row-2})*1000'
 
