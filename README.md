@@ -19,15 +19,15 @@ The regular monthly process looks like this:
 
 Update_Album_Sales_Report.py turns this...
 
-![xl template sheet1](images/xl-template-sheet1.png)
+![xl-template-sheet1](https://github.com/jeremyngcode/Soundrop-Reports/assets/156220343/92df50fa-bb6e-42ea-ac46-2e3b3ab85929)
 
 into this...
 
-![xl template sheet1 filled](images/xl-template-sheet1-filled.png)
+![xl-template-sheet1-filled](https://github.com/jeremyngcode/Soundrop-Reports/assets/156220343/d817a1f4-61b8-432f-8e13-024ae5383e81)
 
 And Update_Album_Sales_Report2.py...
 
-![xl template sheet2](images/xl-template-sheet2.png) ![xl template sheet2 filled](images/xl-template-sheet2-filled.png)
+![xl-template-sheet2](https://github.com/jeremyngcode/Soundrop-Reports/assets/156220343/b8bc42ee-392a-4c9b-9dfb-d79ff3a1b50a) ![xl-template-sheet2-filled](https://github.com/jeremyngcode/Soundrop-Reports/assets/156220343/f4077d7b-71cf-4df1-a0fd-27158f0f72f7)
 
 5. Make a few copy-pastes from this to the separate Excel spreadsheet mentioned in the intro.
 6. Save the file and that's it!
