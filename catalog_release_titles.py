@@ -36,6 +36,7 @@ singles_list = {
 	'single20': 'Schala\'s Theme (From "Chrono Trigger")',
 	'single21': 'The Fading Stories -Qingce Night- (From "Genshin Impact")'
 }
+
 albums_list_collabs = {
 }
 singles_list_collabs = {
