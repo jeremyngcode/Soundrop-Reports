@@ -115,7 +115,7 @@ for i, (col_pair, category) in enumerate(zip(columns, (solo, collabs))):
 			title_cell = sheet1[f'{title_col}{row+2}']
 
 			if j == 0:
-				for cell in (f'{title_col}{row+2}', f'{col_pair[1]}{row+2}'):
+				for cell in (f'{title_col}{row+2}', f'{rev_col}{row+2}'):
 					sheet1[cell].fill = orange_fill
 
 				title_cell.font = biu
