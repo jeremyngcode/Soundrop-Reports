@@ -13,7 +13,7 @@ def get_wht(csv_file, tax_rate):
 		csv_file, converters={'Amount Due in USD': Decimal}
 	)
 	soundrop_df_grouped = soundrop_df.groupby(['Country', 'Channel'])['Amount Due in USD'].sum()
-	soundrop_df_grouped = soundrop_df_grouped.loc['United States']
+	soundrop_df_grouped_US = soundrop_df_grouped.loc['United States']
 
 	taxable_channels = (
 		'Ad-Supported Radio',
@@ -29,7 +29,7 @@ def get_wht(csv_file, tax_rate):
 
 	for channel in taxable_channels:
 		try:
-			taxable_income += soundrop_df_grouped.loc[channel]
+			taxable_income += soundrop_df_grouped_US.loc[channel]
 		except KeyError:
 			print(f'No data for "{channel}".')
 

@@ -71,13 +71,13 @@ soundrop_df_grouped2 = soundrop_df.groupby(
 	['Artist', 'Channel', 'Format', 'Release Title']
 	)[['Quantity', 'Amount Due in USD']].sum()
 
-soundrop_df_grouped2 = soundrop_df_grouped2.loc['Jeremy Ng', 'Download']
-print(f'SOUNDROP DOWNLOADS DATA:\n{soundrop_df_grouped2}')
+soundrop_df_grouped_Dl = soundrop_df_grouped2.loc['Jeremy Ng', 'Download']
+print(f'SOUNDROP DOWNLOADS DATA:\n{soundrop_df_grouped_Dl}')
 print()
 
-print(f'ALBUM TOTAL DOWNLOADS:\n{soundrop_df_grouped2.loc["Album "].sum()}')
-print(f'TRACK TOTAL DOWNLOADS:\n{soundrop_df_grouped2.loc["Track "].sum()}')
-print(f'TOTAL DOWNLOAD REVENUE: {soundrop_df_grouped2["Amount Due in USD"].sum()}')
+print(f'ALBUM TOTAL DOWNLOADS:\n{soundrop_df_grouped_Dl.loc["Album "].sum()}')
+print(f'TRACK TOTAL DOWNLOADS:\n{soundrop_df_grouped_Dl.loc["Track "].sum()}')
+print(f'TOTAL DOWNLOAD REVENUE: {soundrop_df_grouped_Dl["Amount Due in USD"].sum()}')
 print()
 # -------------------------------------------------------------------------------------------------
 
@@ -194,13 +194,13 @@ for row in rows:
 # Write Downloads data
 print('Writing Downloads data..')
 
-sheet2[f'{col}50'] = soundrop_df_grouped2.loc['Track ']['Quantity'].sum()
-sheet2[f'{col}51'] = round(soundrop_df_grouped2.loc['Track ']['Amount Due in USD'].sum(), 2)
+sheet2[f'{col}50'] = soundrop_df_grouped_Dl.loc['Track ']['Quantity'].sum()
+sheet2[f'{col}51'] = round(soundrop_df_grouped_Dl.loc['Track ']['Amount Due in USD'].sum(), 2)
 
-sheet2[f'{col}53'] = soundrop_df_grouped2.loc['Album ']['Quantity'].sum()
-sheet2[f'{col}54'] = round(soundrop_df_grouped2.loc['Album ']['Amount Due in USD'].sum(), 2)
+sheet2[f'{col}53'] = soundrop_df_grouped_Dl.loc['Album ']['Quantity'].sum()
+sheet2[f'{col}54'] = round(soundrop_df_grouped_Dl.loc['Album ']['Amount Due in USD'].sum(), 2)
 
-sheet2[f'{col}56'] = round(soundrop_df_grouped2['Amount Due in USD'].sum(), 2)
+sheet2[f'{col}56'] = round(soundrop_df_grouped_Dl['Amount Due in USD'].sum(), 2)
 
 # Update sheet title
 sheet2.title = statement_period + ' (Streaming + Downloads)'
