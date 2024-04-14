@@ -65,6 +65,13 @@ youtube_services = ('YouTube', 'YouTube Red')
 soundrop_df_grouped_Sub.loc['YouTube Sub'] = sum(
 	map(lambda service: soundrop_df_grouped_Sub.loc[service], youtube_services)
 )
+for services in (amazon_services, youtube_services):
+	for service in services:
+		soundrop_df_grouped_Sub.drop(service, inplace=True)
+
+for group in (soundrop_df_grouped_Sub, soundrop_df_grouped_AdS):
+	group.loc['Spotify', 'Amount Due in USD'] += group.loc['Spotify Discovery Mode', 'Amount Due in USD']
+	group.drop('Spotify Discovery Mode', inplace=True)
 
 # Group for downloads data
 soundrop_df_grouped2 = soundrop_df.groupby(
