@@ -57,6 +57,8 @@ print()
 soundrop_df_grouped_Sub = soundrop_df_grouped.loc['Subscription Streaming']
 soundrop_df_grouped_AdS = soundrop_df_grouped.loc['Ad-Supported Streaming']
 
+pd.set_option('mode.chained_assignment', None)
+
 amazon_services = ('Amazon Ads', 'Amazon Music Unlimited', 'Amazon Prime')
 soundrop_df_grouped_Sub.loc['Amazon'] = sum(
 	map(lambda service: soundrop_df_grouped_Sub.loc[service], amazon_services)
@@ -72,6 +74,8 @@ for services in (amazon_services, youtube_services):
 for group in (soundrop_df_grouped_Sub, soundrop_df_grouped_AdS):
 	group.loc['Spotify', 'Amount Due in USD'] += group.loc['Spotify Discovery Mode', 'Amount Due in USD']
 	group.drop('Spotify Discovery Mode', inplace=True)
+
+pd.set_option('mode.chained_assignment', 'warn')
 
 # Group for downloads data
 soundrop_df_grouped2 = soundrop_df.groupby(
