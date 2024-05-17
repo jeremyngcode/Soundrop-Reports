@@ -153,54 +153,66 @@ col = 'B'
 # Write Subscription Streaming data
 print('Writing Subscription Streaming data..')
 
-services_Sub = (
+services_Sub = [
 	'Apple Music',
 	'Spotify',
 	'Amazon',
 	'YouTube Sub',
 	'Deezer'
-)
+]
 
-rows = (9, 14, 19, 24, 29)
-for row, service in zip(rows, services_Sub):
-	sheet2[f'{col}{row}'] = soundrop_df_grouped_Sub.loc[service, 'Quantity']
-
-	row += 1
-	sheet2[f'{col}{row}'] = round(
-		soundrop_df_grouped_Sub.loc[service, 'Amount Due in USD'], 2
-	)
+rows_Sub = [9, 14, 19, 24, 29]
+for row, service in zip(rows_Sub, services_Sub):
+	try:
+		sheet2[f'{col}{row}'] = soundrop_df_grouped_Sub.loc[service, 'Quantity']
+	except KeyError:
+		print(f'Service {service} not found.')
+		sheet2[f'{col}{row}'] = 0
+		services_Sub.remove(service)
+		rows_Sub.remove(row)
+	else:
+		sheet2[f'{col}{row+1}'] = round(
+			soundrop_df_grouped_Sub.loc[service, 'Amount Due in USD'], 2
+		)
 
 # Write totals for Subscription Streaming data
-sheet2[f'{col}4'] = sum(
+rows_Sub_totals = 4
+sheet2[f'{col}{rows_Sub_totals}'] = sum(
 	map(lambda service: soundrop_df_grouped_Sub.loc[service, 'Quantity'], services_Sub)
 )
 rev_total_Sub = sum(
 	map(lambda service: soundrop_df_grouped_Sub.loc[service, 'Amount Due in USD'], services_Sub)
 )
-sheet2[f'{col}5'] = round(rev_total_Sub, 2)
+sheet2[f'{col}{rows_Sub_totals+1}'] = round(rev_total_Sub, 2)
 
 # Write Ad-Supported Streaming data
 print('Writing Ad-Supported Streaming data..')
 
-services_AdS = (
-	'Spotify',
-)
+services_AdS = [
+	'Spotify'
+]
 
-rows = (40,)
-for row, service in zip(rows, services_AdS):
-	sheet2[f'{col}{row}'] = soundrop_df_grouped_AdS.loc[service, 'Quantity']
-
-	row += 1
-	sheet2[f'{col}{row}'] = round(
-		soundrop_df_grouped_AdS.loc[service, 'Amount Due in USD'], 2
-	)
+rows_AdS = [40]
+for row, service in zip(rows_AdS, services_AdS):
+	try:
+		sheet2[f'{col}{row}'] = soundrop_df_grouped_AdS.loc[service, 'Quantity']
+	except KeyError:
+		print(f'Service {service} not found.')
+		sheet2[f'{col}{row}'] = 0
+		services_AdS.remove(service)
+		rows_AdS.remove(row)
+	else:
+		sheet2[f'{col}{row+1}'] = round(
+			soundrop_df_grouped_AdS.loc[service, 'Amount Due in USD'], 2
+		)
 
 # Write formula values for streaming data
 print('Writing formula values for streaming data..')
 
-rows = (11, 16, 21, 26, 31, 6, 42)
+rows = rows_Sub + rows_AdS
+rows.append(rows_Sub_totals)
 for row in rows:
-	sheet2[f'{col}{row}'] = f'=({col}{row-1}/{col}{row-2})*1000'
+	sheet2[f'{col}{row+2}'] = f'=({col}{row+1}/{col}{row})*1000'
 
 # Write Downloads data
 print('Writing Downloads data..')
