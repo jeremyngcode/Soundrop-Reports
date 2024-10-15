@@ -72,8 +72,14 @@ for services in (amazon_services, youtube_services):
 		soundrop_df_grouped_Sub.drop(service, inplace=True)
 
 for group in (soundrop_df_grouped_Sub, soundrop_df_grouped_AdS):
-	group.loc['Spotify', 'Amount Due in USD'] += group.loc['Spotify Discovery Mode', 'Amount Due in USD']
-	group.drop('Spotify Discovery Mode', inplace=True)
+	try:
+		group.loc['Spotify', 'Amount Due in USD'] += group.loc['Spotify Discovery Mode', 'Amount Due in USD']
+		group.drop('Spotify Discovery Mode', inplace=True)
+	except KeyError as e:
+		if 'Spotify Discovery Mode' in e.args:
+			continue
+		else:
+			raise
 
 pd.set_option('mode.chained_assignment', 'warn')
 
