@@ -87,8 +87,18 @@ soundrop_df_grouped_Dl = soundrop_df_grouped2.loc['Jeremy Ng', 'Download']
 print(f'SOUNDROP DOWNLOADS DATA:\n{soundrop_df_grouped_Dl}')
 print()
 
-print(f'ALBUM TOTAL DOWNLOADS:\n{soundrop_df_grouped_Dl.loc["Album "].sum()}')
-print(f'TRACK TOTAL DOWNLOADS:\n{soundrop_df_grouped_Dl.loc["Track "].sum()}')
+try:
+	print(f'ALBUM TOTAL DOWNLOADS:\n{soundrop_df_grouped_Dl.loc["Album "].sum()}')
+	zero_album_downloads = False
+except KeyError:
+	zero_album_downloads = True
+	print('ALBUM TOTAL DOWNLOADS: 0')
+try:
+	print(f'TRACK TOTAL DOWNLOADS:\n{soundrop_df_grouped_Dl.loc["Track "].sum()}')
+	zero_track_downloads = False
+except KeyError:
+	zero_track_downloads = True
+	print('TRACK TOTAL DOWNLOADS: 0')
 print(f'TOTAL DOWNLOAD REVENUE: {soundrop_df_grouped_Dl["Amount Due in USD"].sum()}')
 print()
 # -------------------------------------------------------------------------------------------------
@@ -218,11 +228,17 @@ for row in rows:
 # Write Downloads data
 print('Writing Downloads data..')
 
-sheet2[f'{col}50'] = soundrop_df_grouped_Dl.loc['Track ']['Quantity'].sum()
-sheet2[f'{col}51'] = round(soundrop_df_grouped_Dl.loc['Track ']['Amount Due in USD'].sum(), 2)
+if not zero_track_downloads:
+	sheet2[f'{col}50'] = soundrop_df_grouped_Dl.loc['Track ']['Quantity'].sum()
+	sheet2[f'{col}51'] = round(soundrop_df_grouped_Dl.loc['Track ']['Amount Due in USD'].sum(), 2)
+else:
+	sheet2[f'{col}50'], sheet2[f'{col}51'] = 0, 0
 
-sheet2[f'{col}53'] = soundrop_df_grouped_Dl.loc['Album ']['Quantity'].sum()
-sheet2[f'{col}54'] = round(soundrop_df_grouped_Dl.loc['Album ']['Amount Due in USD'].sum(), 2)
+if not zero_album_downloads:
+	sheet2[f'{col}53'] = soundrop_df_grouped_Dl.loc['Album ']['Quantity'].sum()
+	sheet2[f'{col}54'] = round(soundrop_df_grouped_Dl.loc['Album ']['Amount Due in USD'].sum(), 2)
+else:
+	sheet2[f'{col}53'], sheet2[f'{col}54'] = 0, 0
 
 sheet2[f'{col}56'] = round(soundrop_df_grouped_Dl['Amount Due in USD'].sum(), 2)
 
